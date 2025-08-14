@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Substitution Cipher Decrypter</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Substitution Cipher Decrypter</h1>
+    <p>Paste a cipher text and pick a method. We’ll try to crack it and format the result into words.</p>
+  </header>
+
+  <main>
+    <form action="{{ url_for('solve') }}" method="POST" class="card">
+      <label for="ciphertext">Ciphertext</label>
+      <textarea id="ciphertext" name="ciphertext" rows="8" placeholder="Paste your cipher here…" required></textarea>
+
+      <div class="row">
+        <label for="method">Method</label>
+        <select id="method" name="method">
+          <option value="substitution">Monoalphabetic Substitution (Genetic + Hill Climb)</option>
+          <option value="caesar">Caesar (Bruteforce)</option>
+        </select>
+      </div>
+
+      <button type="submit">Decrypt</button>
+    </form>
+
+    <section class="info">
+      <details>
+        <summary>How it works</summary>
+        <p>
+          The monoalphabetic solver uses a genetic algorithm to explore possible keys, then a hill-climber to refine the best one.
+          Decryptions are scored with n-gram statistics (bigrams, trigrams, quadgrams) and then segmented into words using word frequencies.
+        </p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <small>Built with your existing solver code. Ready for deployment (Flask).</small>
+  </footer>
+</body>
+</html>

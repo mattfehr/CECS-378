@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decryption Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Decryption Result</h1>
+  </header>
+
+  <main>
+    <article class="card">
+      <h2>Method: {{ method }}</h2>
+      {% if score is not none %}<p><strong>Score:</strong> {{ "%.4f"|format(score) }}</p>{% endif %}
+      <p><strong>Elapsed:</strong> {{ "%.2f"|format(elapsed) }}s</p>
+
+      <div class="columns">
+        <section>
+          <h3>Input Ciphertext</h3>
+          <pre class="mono">{{ ciphertext }}</pre>
+        </section>
+        <section>
+          <h3>Decrypted Plaintext</h3>
+          <pre class="mono">{{ plaintext }}</pre>
+        </section>
+      </div>
+      <p><a href="{{ url_for('index') }}" class="button">Try another</a></p>
+    </article>
+  </main>
+
+  <footer>
+    <small>Tip: For long ciphers, expect longer runtimes.</small>
+  </footer>
+</body>
+</html>
